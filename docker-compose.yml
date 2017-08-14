@@ -1,0 +1,18 @@
+version: '2'
+services:
+  goproducer:
+    image: golang:1.8
+    working_dir: /go/src/golang-proto/producer
+    command: go run main.go
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./producer/:/go/src/golang-proto/producer
+  goconsumer:
+    image: golang:1.8
+    working_dir: /go/src/golang-proto/consumer
+    command: go run main.go
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./consumer/:/go/src/golang-proto/consumer
