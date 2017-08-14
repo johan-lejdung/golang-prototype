@@ -41,7 +41,7 @@ func main() {
 	com.RegisterRouteMsgServer(s, &server{})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
-	log.Printf("Server created")
+	log.Printf("gRPC server created")
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
