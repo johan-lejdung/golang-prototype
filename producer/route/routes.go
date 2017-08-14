@@ -24,4 +24,10 @@ var routes = Routes{
 		"/produce/msg",
 		produce.Msg,
 	},
+	Route{
+		"ProducePubSubMsg",
+		"POST",
+		"/produce/pubsub/msg",
+		produce.PubSubMsg,
+	},
 }
