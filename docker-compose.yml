@@ -5,7 +5,9 @@ services:
     working_dir: /go/src/golang-proto/producer
     command: go run main.go
     ports:
-      - "8080:8080"
+      - "8081:8081"
+    links:
+      - pubsub
     volumes:
       - ./producer/:/go/src/golang-proto/producer
   goconsumer:
@@ -14,5 +16,12 @@ services:
     command: go run main.go
     ports:
       - "50051:50051"
+    links:
+      - pubsub
     volumes:
       - ./consumer/:/go/src/golang-proto/consumer
+  pubsub:
+    image: storytel/google-cloud-pubsub-emulator
+    command: gcloud beta emulators pubsub start --host=0.0.0.0 --port=8590
+    ports:
+      - "8590:8590"

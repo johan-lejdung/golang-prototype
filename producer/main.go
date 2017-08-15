@@ -21,16 +21,19 @@ func main() {
 		log.Fatal("Error loading general.env file")
 	}
 
+	initPubSub()
+	initRestRouter()
+}
+
+func initRestRouter() {
 	router := route.NewRouter()
 	log.Printf("Router created")
-
-	initPubSub()
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"})
 	originsOk := handlers.AllowedOrigins([]string{os.Getenv("ORIGIN_ALLOWED")})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 
-	log.Fatal(http.ListenAndServe(":8080", handlers.CORS(headersOk, originsOk, methodsOk)(router)))
+	log.Fatal(http.ListenAndServe(":8081", handlers.CORS(headersOk, originsOk, methodsOk)(router)))
 }
 
 func initPubSub() {
@@ -43,7 +46,7 @@ func initPubSub() {
 		log.Fatal(err)
 	}
 
-	log.Printf("PubSub client created 1/2")
+	log.Printf("PubSub client PRODUCER created 1/2")
 
 	// Create topic if it doesn't exist.
 	com.Topic = createTopicIfNotExists(client)
