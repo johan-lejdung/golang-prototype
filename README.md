@@ -1,5 +1,5 @@
 # golang-proto
-A GoLang prototype that contains an example of how one might use Protobuf, gRPC and PubSub to communicate both internally and with clients 
+A GoLang prototype that contains an example of how one might use Protobuf together with either gRPC or PubSub to communicate with other services and clients 
 
 # Installation
 
