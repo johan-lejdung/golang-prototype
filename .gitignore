@@ -1,2 +1,4 @@
-producer/vendor
-consumer/vendor
+producer/vendor/*
+!producer/vendor/vendor.json
+consumer/vendor/*
+!consumer/vendor/vendor.json
