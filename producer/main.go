@@ -47,10 +47,7 @@ func initPubSub() {
 	}
 
 	log.Printf("PubSub client PRODUCER created 1/2")
-
-	// Create topic if it doesn't exist.
 	com.Topic = createTopicIfNotExists(client)
-
 	log.Printf("PubSub topic created 2/2")
 }
 

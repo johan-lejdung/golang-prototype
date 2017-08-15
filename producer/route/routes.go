@@ -19,10 +19,10 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
-		"ProduceMsg",
+		"ProduceGRPCMsg",
 		"POST",
 		"/produce/msg",
-		produce.Msg,
+		produce.GRPCMsg,
 	},
 	Route{
 		"ProducePubSubMsg",

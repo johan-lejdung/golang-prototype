@@ -17,12 +17,12 @@ import (
 	"google.golang.org/grpc"
 )
 
-// Msg Produces a message
-func Msg(w http.ResponseWriter, r *http.Request) {
+// GRPCMsg Produces a message using gRPC
+func GRPCMsg(w http.ResponseWriter, r *http.Request) {
 
 	newMsg := &com.ComMsg{
-		Msg:    "This is a test message.",
-		Sender: 1,
+		Msg:    "",
+		Sender: 0,
 	}
 
 	// Get the payload
@@ -42,26 +42,17 @@ func Msg(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Check for error
-	if err != nil {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(422) // unprocessable entity
-		if errPanic := json.NewEncoder(w).Encode("FAILURE"); errPanic != nil {
-			panic(errPanic)
-		}
-	} else {
-		// Send to consumer
-		returnMsg := sendMsgToConsumer(newMsg)
-		// Send the parentNode
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(http.StatusCreated)
-		if err := json.NewEncoder(w).Encode(returnMsg); err != nil {
-			panic(err)
-		}
+	// Send to consumer
+	returnMsg := sendMsgToConsumerGRPC(newMsg)
+	// Send the parentNode
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusCreated)
+	if err := json.NewEncoder(w).Encode(returnMsg); err != nil {
+		panic(err)
 	}
 }
 
-func sendMsgToConsumer(msg *com.ComMsg) *com.StatusReport {
+func sendMsgToConsumerGRPC(msg *com.ComMsg) *com.StatusReport {
 
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(com.Address, grpc.WithInsecure())
@@ -87,8 +78,8 @@ func sendMsgToConsumer(msg *com.ComMsg) *com.StatusReport {
 func PubSubMsg(w http.ResponseWriter, r *http.Request) {
 
 	newMsg := &com.ComMsg{
-		Msg:    "This is a test message.",
-		Sender: 1,
+		Msg:    "",
+		Sender: 0,
 	}
 
 	// Get the payload
@@ -108,22 +99,13 @@ func PubSubMsg(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Check for error
-	if err != nil {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(422) // unprocessable entity
-		if errPanic := json.NewEncoder(w).Encode("FAILURE"); errPanic != nil {
-			panic(errPanic)
-		}
-	} else {
-		// Send to consumer
-		returnMsg := sendMsgToConsumerPubSub(newMsg)
-		// Send the parentNode
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-		w.WriteHeader(http.StatusCreated)
-		if err := json.NewEncoder(w).Encode(returnMsg); err != nil {
-			panic(err)
-		}
+	// Send to consumer
+	returnMsg := sendMsgToConsumerPubSub(newMsg)
+	// Send the parentNode
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusCreated)
+	if err := json.NewEncoder(w).Encode(returnMsg); err != nil {
+		panic(err)
 	}
 }
 
@@ -140,6 +122,6 @@ func sendMsgToConsumerPubSub(msg *com.ComMsg) *com.StatusReport {
 		return &com.StatusReport{Status: com.StatusReport_ERROR, Message: msg}
 	}
 
-	log.Printf("PubSub message published.")
+	log.Printf("Produced: %s | Sender: %d", msg.Msg, msg.Sender)
 	return &com.StatusReport{Status: com.StatusReport_SUCCESS, Message: msg}
 }

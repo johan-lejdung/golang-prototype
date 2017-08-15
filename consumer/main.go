@@ -18,14 +18,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-const (
-	port = ":50051"
-)
-
-var (
-	Subscription *pubsub.Subscription
-)
-
 // server is used to implement com.RouteMsgServer.
 type server struct{}
 
@@ -41,13 +33,14 @@ func main() {
 		log.Fatal("Error loading general.env file")
 	}
 
+	// Need to call with goroutine because each will lock the thread waiting for messages
 	go initPubSub()
 	initGRPC()
 }
 
 func initGRPC() {
 	log.Printf("Starting gRPC Server")
-	lis, err := net.Listen("tcp", port)
+	lis, err := net.Listen("tcp", com.Port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -72,10 +65,9 @@ func initPubSub() {
 	}
 
 	log.Printf("PubSub client CONSUMER created")
-
 	// Use a callback to receive messages via sub.
-	Subscription := createSubscriptionIfNotExists(client)
-	err = Subscription.Receive(ctx, func(ctx context.Context, m *pubsub.Message) {
+	com.Subscription = createSubscriptionIfNotExists(client)
+	err = com.Subscription.Receive(ctx, func(ctx context.Context, m *pubsub.Message) {
 		newMsg := &com.ComMsg{}
 		proto.Unmarshal(m.Data, newMsg)
 		logger.LogMsgConsumed(*newMsg)
