@@ -3,7 +3,7 @@ package produce
 import (
 	"encoding/json"
 	"fmt"
-	"golang-proto/producer/com"
+	"golang-prototype/producer/com"
 	"io"
 	"io/ioutil"
 	"log"

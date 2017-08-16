@@ -3,7 +3,7 @@ package route
 import (
 	"net/http"
 
-	"golang-proto/producer/logger"
+	"golang-prototype/producer/logger"
 
 	"github.com/gorilla/mux"
 )

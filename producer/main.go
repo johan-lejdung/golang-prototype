@@ -8,8 +8,8 @@ import (
 
 	"cloud.google.com/go/pubsub"
 
-	"golang-proto/producer/com"
-	"golang-proto/producer/route"
+	"golang-prototype/producer/com"
+	"golang-prototype/producer/route"
 
 	"github.com/gorilla/handlers"
 	"github.com/joho/godotenv"

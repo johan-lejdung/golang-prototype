@@ -1,8 +1,8 @@
 package main
 
 import (
-	"golang-proto/consumer/com"
-	"golang-proto/consumer/logger"
+	"golang-prototype/consumer/com"
+	"golang-prototype/consumer/logger"
 	"log"
 	"net"
 	"os"

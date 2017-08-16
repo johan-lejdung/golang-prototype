@@ -3,7 +3,7 @@ package route
 import (
 	"net/http"
 
-	"golang-proto/producer/produce"
+	"golang-prototype/producer/produce"
 )
 
 // Route struct for routes

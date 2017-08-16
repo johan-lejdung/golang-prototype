@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"golang-proto/consumer/com"
+	"golang-prototype/consumer/com"
 	"log"
 	"net/http"
 	"time"

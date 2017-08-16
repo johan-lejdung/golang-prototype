@@ -2,24 +2,24 @@ version: '2'
 services:
   goproducer:
     image: golang:1.8
-    working_dir: /go/src/golang-proto/producer
+    working_dir: /go/src/golang-prototype/producer
     command: go run main.go
     ports:
       - "8081:8081"
     links:
       - pubsub
     volumes:
-      - ./producer/:/go/src/golang-proto/producer
+      - ./producer/:/go/src/golang-prototype/producer
   goconsumer:
     image: golang:1.8
-    working_dir: /go/src/golang-proto/consumer
+    working_dir: /go/src/golang-prototype/consumer
     command: go run main.go
     ports:
       - "50051:50051"
     links:
       - pubsub
     volumes:
-      - ./consumer/:/go/src/golang-proto/consumer
+      - ./consumer/:/go/src/golang-prototype/consumer
   pubsub:
     image: storytel/google-cloud-pubsub-emulator
     command: gcloud beta emulators pubsub start --host=0.0.0.0 --port=8590
