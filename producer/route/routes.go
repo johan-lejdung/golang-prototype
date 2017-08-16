@@ -21,7 +21,7 @@ var routes = Routes{
 	Route{
 		"ProduceGRPCMsg",
 		"POST",
-		"/produce/msg",
+		"/produce/grpc/msg",
 		produce.GRPCMsg,
 	},
 	Route{
