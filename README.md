@@ -7,29 +7,46 @@ Install golang: https://golang.org/doc/install
 
 If not already done, add the following lines to ~/.bach_profile or ~/.zshrc (if using zsh)
 
-    export GOPATH=/Users/<username>/go
+    `export GOPATH=/Users/<username>/go`
 
-    export PATH=$GOPATH/bin:$PATH
+    `export PATH=$GOPATH/bin:$PATH`
 
 Where <username> is the username of your profile.
 
-Run: 
+**Go to your GOPATH/src and then clone this repo:**
 
-Then install govendor:
+    `git clone git@github.com:Storytel/golang-prototype.git`
 
-go get -u github.com/kardianos/govendor
+**Then install govendor:**
 
-Run this command in the correct folder:
+    `go get -u github.com/kardianos/govendor`
 
-    govendor init
-    govendor add +external
+**Type `govendor sync` in both**:
+ - `golang-prototype/consumer`
+ - `golang-prototype/producer`
+ 
+**Then go back to root `golang-prototype/`**
 
-A file named *general.env* must exist, with data similar to that in *general.env.template*
 
-# Future
+A file named *general.env* must exist. Copy *general.env.template* and rename the copy to *general.env*.
 
-* JWT for auth, https://jwt.io/
-* Write simple tests √
-* More packages √
-* Analyze comment with perspective API, https://www.perspectiveapi.com/ √
-* Handle the analyze, bring out best data
+**Run `docker-compose up`**
+
+# Testing
+
+There are 2 endpoints to the producer. You can easily access these using the program [postman](https://www.getpostman.com/postman). 
+
+**Endpoints:**
+ - `localhost:8081/produce/grpc/msg`
+ - `localhost:8081/produce/pubsub/msg`
+ 
+The first one will transport the message sent via gRPC and the second one will do it using the PubSub Emulator.
+
+In postman make sure the header is:
+`Content-Type` : `application/json`
+
+And the body is:
+`{
+	"msg" : "This is a custom message and sender",
+	"sender": 4
+}`
