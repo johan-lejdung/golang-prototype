@@ -1,0 +1,21 @@
+syntax = "proto3";
+package com;
+
+service RouteMsg {
+  // Ask the consumer to consume a MSG, wait for a response
+  rpc SendMsg(ComMsg) returns (StatusReport) {}
+}
+
+message ComMsg {
+  string msg = 1;
+  int32 sender = 2;  // Unique ID number for this person.
+}
+
+message StatusReport {
+  enum Status {
+    SUCCESS = 0;
+    ERROR = 1;
+  };
+  Status status = 1;
+  ComMsg message = 2;
+}

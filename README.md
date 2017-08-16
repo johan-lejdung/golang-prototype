@@ -30,7 +30,7 @@ Where `<username>` is the username of your profile.
 **Then go back to root `golang-prototype/`**
 
 
-A file named *general.env* must exist. Copy *general.env.template* and rename the copy to *general.env*.
+A file named *general.env* must exist in subdirectories `consumer` and `producer`. Copy *general.env.template* and rename the copy to *general.env*.
 
 **Run `docker-compose up`**
 
