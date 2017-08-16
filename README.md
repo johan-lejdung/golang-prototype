@@ -21,6 +21,8 @@ Where `<username>` is the username of your profile.
 
 **Then install govendor:**
 
+*Sidenote: govendor is used to keep packages locally in projects rather than in the GOPATH, it also works much like npm/yarn*
+
     `go get -u github.com/kardianos/govendor`
 
 **Type `govendor sync` in both**:
@@ -52,3 +54,5 @@ And the body is:
 	"msg" : "This is a custom message and sender",
 	"sender": 4
 }`
+
+**If everything work as expected you will recieve the same body in the response back!**

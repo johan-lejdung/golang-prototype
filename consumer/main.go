@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"time"
 
 	"github.com/golang/protobuf/proto"
 
@@ -115,6 +116,17 @@ func createTopicIfNotExists(c *pubsub.Client) *pubsub.Topic {
 
 	t, err = c.CreateTopic(ctx, topic)
 	if err != nil {
+		// Try 3 more times (since both consumer and producer might try to create at same time), ugly fix
+		counter := 0
+		for counter < 3 {
+			time.Sleep(time.Second * 3)
+			tt := c.Topic(topic)
+			if ok, err = t.Exists(ctx); ok && err == nil {
+				return tt
+			}
+			counter++
+		}
+
 		log.Fatalf("Failed to create the topic: %v", err)
 	}
 	return t
