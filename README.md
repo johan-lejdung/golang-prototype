@@ -56,3 +56,5 @@ And the body is:
 }`
 
 **If everything work as expected you will recieve the same body in the response back!**
+
+You can also observe the logs from the docker containers to see what is happening.
