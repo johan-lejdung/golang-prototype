@@ -4,6 +4,7 @@ import (
 	"golang-prototype/consumer/com"
 	"golang-prototype/consumer/logger"
 	"log"
+	"math/rand"
 	"net"
 	"os"
 	"time"
@@ -119,7 +120,7 @@ func createTopicIfNotExists(c *pubsub.Client) *pubsub.Topic {
 		// Try 3 more times (since both consumer and producer might try to create at same time), ugly fix
 		counter := 0
 		for counter < 3 {
-			time.Sleep(time.Second * 3)
+			time.Sleep(time.Second * time.Duration(random(1, 4)))
 			tt := c.Topic(topic)
 			if ok, err = t.Exists(ctx); ok && err == nil {
 				return tt
@@ -130,4 +131,9 @@ func createTopicIfNotExists(c *pubsub.Client) *pubsub.Topic {
 		log.Fatalf("Failed to create the topic: %v", err)
 	}
 	return t
+}
+
+func random(min, max int) int {
+	rand.Seed(time.Now().Unix())
+	return rand.Intn(max-min) + min
 }
