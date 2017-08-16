@@ -5,6 +5,8 @@ A GoLang prototype that contains an example of how one might use Protobuf togeth
 
 Install golang: https://golang.org/doc/install
 
+*Sidenote: GoLang keeps all of it's code (and your code) in a huge rootfolder, to more easily reuse common packages. This is was is refered as GOPATH.*
+
 If not already done, add the following lines to ~/.bach_profile or ~/.zshrc (if using zsh)
 
     `export GOPATH=/Users/<username>/go`
