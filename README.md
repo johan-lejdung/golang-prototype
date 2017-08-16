@@ -2,8 +2,8 @@
 A GoLang prototype that contains an example of how one might use Protobuf together with either gRPC or PubSub to communicate with other services and clients.
 
 **Resources:**
-[How to Write Go Code](https://golang.org/doc/code.html)
-[A Tour of Go (Interactive coding tour)](https://tour.golang.org/welcome/1)
+- [How to Write Go Code](https://golang.org/doc/code.html)
+- [A Tour of Go (Interactive coding tour)](https://tour.golang.org/welcome/1)
 
 # Installation
 
