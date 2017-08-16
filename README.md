@@ -13,7 +13,7 @@ If not already done, add the following lines to ~/.bach_profile or ~/.zshrc (if 
 
     `export PATH=$GOPATH/bin:$PATH`
 
-Where <username> is the username of your profile.
+Where `<username>` is the username of your profile.
 
 **Go to your GOPATH/src and then clone this repo:**
 
