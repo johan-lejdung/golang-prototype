@@ -3,6 +3,7 @@ package route
 import (
 	"net/http"
 
+	"golang-prototype/producer/auth"
 	"golang-prototype/producer/produce"
 )
 
@@ -11,7 +12,7 @@ type Route struct {
 	Name        string
 	Method      string
 	Pattern     string
-	HandlerFunc http.HandlerFunc
+	HandlerFunc http.Handler
 }
 
 // Routes contains all the routes
@@ -29,5 +30,17 @@ var routes = Routes{
 		"POST",
 		"/produce/pubsub/msg",
 		produce.PubSubMsg,
+	},
+	Route{
+		"JWTFetchToken",
+		"GET",
+		"/produce/jwt/fetch",
+		auth.FetchToken,
+	},
+	Route{
+		"JWTAuthToken",
+		"POST",
+		"/produce/jwt/auth",
+		auth.JwtMiddleware.Handler(auth.AuthToken),
 	},
 }

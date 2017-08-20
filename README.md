@@ -1,5 +1,16 @@
 # golang-prototype
-A GoLang prototype that contains an example of how one might use Protobuf together with either gRPC or PubSub to communicate with other services and clients 
+A GoLang prototype that contains an example of how one might use Protobuf together with either gRPC or PubSub to communicate with other services and clients.
+
+**Resources:**
+- [How to Write Go Code](https://golang.org/doc/code.html)
+- [A Tour of Go (Interactive coding tour)](https://tour.golang.org/welcome/1)
+
+# Covers
+
+- JWT Token creation & authentication
+- Protobuf
+- gRPC
+- PubSub
 
 # Installation
 
@@ -43,8 +54,12 @@ There are 2 endpoints to the producer. You can easily access these using the pro
 **Endpoints:**
  - `localhost:8081/produce/grpc/msg`
  - `localhost:8081/produce/pubsub/msg`
+ - `localhost:8081/produce/jwt/fetch`
+ - `localhost:8081/produce/jwt/auth`
  
-The first one will transport the message sent via gRPC and the second one will do it using the PubSub Emulator.
+**PubSub/gRPC**
+ 
+`localhost:8081/produce/grpc/msg` will transport the message sent via gRPC and `localhost:8081/produce/pubsub/msg` will do it using the PubSub Emulator.
 
 In postman make sure the header is:
 `Content-Type` : `application/json`
@@ -59,3 +74,11 @@ And the body is:
 In the case of gRPC the response is the actual response from the `consumer`, via `producer`. That is not the case with PubSub, it's more of a confirmation in that usecase.
 
 You can also observe the logs from the docker containers to see what is happening.
+
+**For JWT**
+
+Call `localhost:8081/produce/jwt/fetch` and save the Token from the response.
+
+In Postman, add a header `Authorization` with value `Bearer <token>` where `<token>` is the token from the previous response.
+
+The message in the response will say `All good, you are free to enter!` if the token is valid.
