@@ -67,11 +67,9 @@ There are 2 endpoints to the producer. You can easily access these using the pro
  - `localhost:8081/produce/jwt/fetch`
  - `localhost:8081/produce/jwt/auth`
  
-All are of `method: POST`
- 
 **PubSub/gRPC**
  
-`localhost:8081/produce/grpc/msg` will transport the message sent via gRPC and `localhost:8081/produce/pubsub/msg` will do it using the PubSub Emulator.
+`localhost:8081/produce/grpc/msg` will transport the message sent via gRPC and `localhost:8081/produce/pubsub/msg` will do it using the PubSub Emulator. Both via `method: POST`.
 
 In postman make sure the header is:
 `Content-Type` : `application/json`
