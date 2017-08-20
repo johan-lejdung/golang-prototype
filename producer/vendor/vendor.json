@@ -255,13 +255,13 @@
 			"revisionTime": "2017-07-29T23:24:55Z"
 		},
 		{
-			"checksumSHA1": "MRLtTu/vpd18le8/HPLxOdjO5RE=",
+			"checksumSHA1": "KG+XZAbxdkpBm3Fa3bJ3Ylq8CKI=",
 			"path": "golang.org/x/text/unicode/bidi",
 			"revision": "3bd178b88a8180be2df394a1fbb81313916f0e7b",
 			"revisionTime": "2017-07-29T23:24:55Z"
 		},
 		{
-			"checksumSHA1": "kKylzIrLEnH8NKyeVAL0dq5gjVQ=",
+			"checksumSHA1": "Anof4bt0AU+Sa3R8Rq0KBnlpbaQ=",
 			"path": "golang.org/x/text/unicode/norm",
 			"revision": "3bd178b88a8180be2df394a1fbb81313916f0e7b",
 			"revisionTime": "2017-07-29T23:24:55Z"
