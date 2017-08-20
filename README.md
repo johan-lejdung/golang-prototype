@@ -67,6 +67,8 @@ There are 2 endpoints to the producer. You can easily access these using the pro
  - `localhost:8081/produce/jwt/fetch`
  - `localhost:8081/produce/jwt/auth`
  
+All are of `method: POST`
+ 
 **PubSub/gRPC**
  
 `localhost:8081/produce/grpc/msg` will transport the message sent via gRPC and `localhost:8081/produce/pubsub/msg` will do it using the PubSub Emulator.
@@ -87,8 +89,10 @@ You can also observe the logs from the docker containers to see what is happenin
 
 **For JWT**
 
-Call `localhost:8081/produce/jwt/fetch` and save the Token from the response.
+Call `localhost:8081/produce/jwt/fetch` via `method: GET` and the header `Content-Type` : `application/json`.  
+Save the Token from the response.
 
 In Postman, add a header `Authorization` with value `Bearer <token>` where `<token>` is the token from the previous response.
 
+Then call  `localhost:8081/produce/jwt/fetch` via `method: POST`.
 The message in the response will say `All good, you are free to enter!` if the token is valid.
