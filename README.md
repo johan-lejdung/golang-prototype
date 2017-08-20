@@ -26,9 +26,19 @@ If not already done, add the following lines to ~/.bach_profile or ~/.zshrc (if 
 
 Where `<username>` is the username of your profile.
 
-**Go to your GOPATH/src and then clone this repo:**
+**Get this repo**
+    
+    `go get github.com/johan-lejdung/golang-prototype`
+*OR*
 
-    `git clone git@github.com:Storytel/golang-prototype.git`
+    `git clone git@github.com:johan-lejdung/golang-prototype.git`
+
+**Navigate to path**
+
+    `GOPATH/src/golang-prototype`
+*OR*
+
+    `GOPATH/src/github.com/johan-lejdung/golang-prototype`
 
 **Then install govendor:**
 
