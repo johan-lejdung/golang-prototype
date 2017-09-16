@@ -1,6 +1,7 @@
 syntax = "proto3";
 package com;
 
+// Only used for GRPC, not PubSub
 service RouteMsg {
   // Ask the consumer to consume a MSG, wait for a response
   rpc SendMsg(ComMsg) returns (StatusReport) {}
